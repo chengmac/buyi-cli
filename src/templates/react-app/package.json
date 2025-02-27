@@ -1,0 +1,34 @@
+{
+  "name": "{{name}}",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "webpack serve --open",
+    "build": "webpack --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "a react component",
+  "dependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-router-dom": "^6.29.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.9",
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-react": "^7.26.3",
+    "@types/react": "^17.0.15",
+    "@types/react-dom": "^17.0.9",
+    "babel-loader": "^9.2.1",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.21.0",
+    "html-webpack-plugin": "^5.6.3",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.4",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.0.0"
+  }
+}

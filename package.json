@@ -1,0 +1,31 @@
+{
+  "name": "buyi-cli",
+  "version": "0.1.2",
+  "type": "commonjs",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "bin": {
+    "buyi-cli": "bin/react-cli.js"
+  },
+  "keywords": [
+    "buyi",
+    "buyi-cli",
+    "react"
+  ],
+  "files": [
+    "bin"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "A scaffold that can create projects",
+  "devDependencies": {
+    "rollup": "^4.34.8",
+    "rollup-plugin-copy": "^3.5.0"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^13.1.0",
+    "inquirer": "^12.4.2"
+  }
+}
