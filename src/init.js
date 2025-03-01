@@ -4,12 +4,29 @@ const chalk = require("chalk");
 const inquirer = require("inquirer");
 
 async function initProject() {
-  const answer = await inquirer.default.prompt([
+  const isOverwrite = process.argv.includes("--force");
+
+  const { projectName } = await inquirer.default.prompt([
     {
       type: "input",
       message: "Enter project name",
       name: "projectName",
     },
+  ]);
+
+  // projectName 不能为空
+  if (!projectName) {
+    console.log(chalk.red.bold(`❌ please enter project name`));
+    process.exit(1);
+  }
+
+  // 不强制覆盖创建时检查项目是否存在
+  if (!isOverwrite && projectExists) {
+    console.log(chalk.red.bold(`❌ Project ${projectName} already exists.`));
+    process.exit(1);
+  }
+
+  const { template } = await inquirer.default.prompt([
     {
       type: "list",
       message: "Select a template",
@@ -19,14 +36,6 @@ async function initProject() {
     },
   ]);
 
-  const { projectName, template } = answer;
-
-  // projectName 不能为空
-  if (!projectName) {
-    console.log(chalk.red.bold(`❌ please enter project name`));
-    process.exit(1);
-  }
-
   // template 选择 react-library 时暂不支持
   if (template === "react-library") {
     console.log(
@@ -35,19 +44,8 @@ async function initProject() {
     process.exit(1);
   }
 
-  const isOverwrite = process.argv.includes("--force");
-
   const projectPath = path.resolve(process.cwd(), projectName);
   const projectExists = fs.existsSync(projectPath);
-
-  // 不强制覆盖创建时检查项目是否存在
-  if (!isOverwrite && projectExists) {
-    console.log(
-      chalk.red.bold(`❌ Project ${answer.projectName} already exists.`)
-    );
-    process.exit(1);
-  }
-
   const templatePath = path.join(__dirname, "./templates", template);
 
   // 将模板复制到项目目录下
